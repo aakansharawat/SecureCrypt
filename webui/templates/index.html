@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>File Encryption & Decryption</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h2>File Encryption & Decryption</h2>
+      <p>Securely encrypt or decrypt your files and folders with password protection</p>
+      <div class="tabs">
+        <button id="tab-encrypt" class="tab active" type="button">Encrypt</button>
+        <button id="tab-decrypt" class="tab" type="button">Decrypt</button>
+      </div>
+    </section>
+
+    <form id="process-form" action="/process" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="action" id="action" value="encrypt" />
+
+      <section>
+        <h4>Select Files to Process</h4>
+        <div class="dropzone" id="dropzone" role="button">
+          <div class="dz-inner">
+            <span class="icon">⬆️</span>
+            <div>Drag and drop files, or use the buttons below</div>
+            <small>Supports all file types</small>
+          </div>
+        </div>
+        <div class="select-row">
+          <label class="file-btn">
+            <input id="files-input" type="file" name="files" multiple />
+            <span>Choose Files</span>
+          </label>
+          <label class="file-btn">
+            <input id="folder-input" type="file" name="folder" webkitdirectory directory multiple />
+            <span>Choose Folder</span>
+          </label>
+        </div>
+        <details open>
+          <summary>Selected Items</summary>
+          <ul id="selected-list"></ul>
+        </details>
+        <!-- relpaths are filled by JS before submit -->
+        <div id="relpaths-container"></div>
+      </section>
+
+      <section>
+        <h4>Settings</h4>
+        <label>Password (optional)
+          <input type="password" id="password" name="password" placeholder="Enter your password" />
+        </label>
+        <div class="actions">
+          <button id="submit-btn" type="submit">Process</button>
+          <button id="clear-btn" class="secondary" type="button">Clear All</button>
+        </div>
+      </section>
+    </form>
+
+    <section class="features">
+      <article>
+        <h5>Secure Encryption</h5>
+        <small>Uses your password or project .env key</small>
+      </article>
+      <article>
+        <h5>Easy Decryption</h5>
+        <small>Decrypt anytime with the correct password</small>
+      </article>
+      <article>
+        <h5>Privacy First</h5>
+        <small>Processed locally on your machine</small>
+      </article>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

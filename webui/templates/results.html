@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Results - File Encryption & Decryption</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="container">
+    <header style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem;">
+      <h3 style="margin:0;">{{ action|capitalize }} Results</h3>
+      <div>
+        <a class="contrast" href="/">← New Job</a>
+      </div>
+    </header>
+
+    <section>
+      <p>Your files have been processed successfully.</p>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:0.5rem;">
+        <a class="contrast" role="button" href="{{ url_for('download_all', job_id=job_id) }}">⬇️ Download All</a>
+      </div>
+      <ul>
+        {% for f in files %}
+        <li style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          <div>
+            <strong>{{ f.path }}</strong>
+            <small style="display:block;color:#64748b;">{{ (f.size/1024)|round(1) }} KB</small>
+          </div>
+          <div>
+            <a role="button" href="{{ url_for('download_file', job_id=job_id) }}?path={{ f.path }}">Download</a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% if files|length == 0 %}
+        <blockquote>No downloadable files were detected.</blockquote>
+      {% endif %}
+    </section>
+
+    <section class="features">
+      <article>
+        <h5>Secure Encryption</h5>
+        <small>Uses your password or project .env key</small>
+      </article>
+      <article>
+        <h5>Easy Decryption</h5>
+        <small>Decrypt anytime with the correct password</small>
+      </article>
+      <article>
+        <h5>Privacy First</h5>
+        <small>Processed locally on your machine</small>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

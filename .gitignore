@@ -1,0 +1,36 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# C++ build outputs
+*.o
+*.obj
+*.exe
+*.out
+cryption
+encrypt_decrypt
+/build
+/CMakeFiles
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# Editor/IDE
+.vscode/
+*.code-workspace
+
+# Logs and temp
+*.log
+/tmp/
+.DS_Store
+
+# App data
+webui/__pycache__/
+*.sqlite
+encrypty-ui-jobs/
+# Flask temp jobs are created in system tmp; this prevents accidental local dirs
+/tmp/encrypty-ui-jobs/
+
+# Secrets
+.env
